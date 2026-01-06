@@ -159,3 +159,18 @@ function removeItem(title) {
   delete cart[title];
   updateCartUI();
 }
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("orderSuccess") === "true") {
+    localStorage.removeItem("orderSuccess");
+
+    const popup = document.getElementById("successPopup");
+    if (!popup) return;
+
+    popup.style.display = "block";
+
+    setTimeout(() => {
+      popup.style.display = "none";
+    }, 3000);
+  }
+});
