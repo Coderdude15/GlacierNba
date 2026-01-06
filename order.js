@@ -31,15 +31,50 @@ function placeOrder() {
     return;
   }
 
+  const cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+  if (Object.keys(cart).length === 0) {
+    alert("Your cart is empty");
+    return;
+  }
+
+  let message = `NEW ORDER\n\n`;
+  message += `Name: ${name}\n`;
+  message += `Email: ${email}\n`;
+  message += `Address:\n${address}\n\n`;
+  message += `Items:\n`;
+
+  let total = 0;
+
+  Object.values(cart).forEach(item => {
+    const line = `${item.title} x ${item.qty} = $${(item.price * item.qty).toFixed(2)}\n`;
+    message += line;
+    total += item.price * item.qty;
+  });
+
+  message += `\nTotal: $${total.toFixed(2)}`;
+
+  const subject = encodeURIComponent("New NBA Mystery Pack Order");
+  const body = encodeURIComponent(message);
+
+  // 🔥 YOUR EMAIL HERE
+  const yourEmail = "twhitson240@gmail.com";
+
+  // Open email app
+  window.location.href = `mailto:${yourEmail}?subject=${subject}&body=${body}`;
+
   // Clear cart
   localStorage.removeItem("cart");
 
-  // Set success flag
+  // Show success popup on main page
   localStorage.setItem("orderSuccess", "true");
 
-  // Redirect to main page
-  window.location.href = "index.html";
+  // Redirect back to main page
+  setTimeout(() => {
+    window.location.href = "index.html";
+  }, 500);
 }
+
 
 
 function goBack() {
