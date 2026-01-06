@@ -8,7 +8,7 @@ const products = [
     image: "images/icy_nba10.png"
   },
   {
-    title: "Glacier 16 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
+    title: "Glacier 15 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
     price: 15.99,
     cards: 15,
     image: "images/icy_nba15.png"
