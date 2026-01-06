@@ -1,0 +1,130 @@
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0a2540, #1e3a5f);
+  color: #eaf6ff;
+  text-align: center;
+}
+
+header {
+  padding: 30px;
+  background: rgba(255, 255, 255, 0.05);
+  border-bottom: 2px solid #6dd6ff;
+}
+
+h1 {
+  margin: 0;
+  font-size: 2.5em;
+  color: #b8ecff;
+  text-shadow: 0 0 10px #6dd6ff;
+}
+
+main {
+  padding: 30px;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.product {
+  background: rgba(255, 255, 255, 0.08);
+  border: 2px solid #6dd6ff;
+  border-radius: 15px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 0 15px rgba(109, 214, 255, 0.4);
+}
+
+.product h2 {
+  color: #d9f4ff;
+}
+
+.price {
+  font-size: 22px;
+  color: #6dd6ff;
+  margin: 10px 0;
+}
+
+button {
+  background: #6dd6ff;
+  border: none;
+  padding: 12px 18px;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: #002233;
+  font-weight: bold;
+}
+
+button:hover {
+  background: #9be7ff;
+}
+
+.info {
+  margin-top: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background: rgba(255, 255, 255, 0.06);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #6dd6ff;
+}
+
+footer {
+  margin-top: 40px;
+  padding: 15px;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.product-img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(109, 214, 255, 0.6);
+}
+
+.product:hover .product-img {
+  transform: scale(1.05);
+  transition: 0.3s ease;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: #0a2540;
+  padding: 25px;
+  border-radius: 15px;
+  max-width: 400px;
+  text-align: center;
+  border: 2px solid #6dd6ff;
+}
+
+.modal-content img {
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+}
+
+.close {
+  float: right;
+  font-size: 28px;
+  cursor: pointer;
+  color: #6dd6ff;
+}
