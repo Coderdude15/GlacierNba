@@ -1,82 +1,27 @@
-const cart = JSON.parse(localStorage.getItem("cart")) || {};
-const orderItemsDiv = document.getElementById("orderItems");
-const orderTotalSpan = document.getElementById("orderTotal");
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order Summary</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-let total = 0;
-let summaryText = "";
+<div style="display:flex; justify-content:space-between; align-items:center; padding:20px;">
+  <h1>🧾 Order Summary</h1>
+  <span style="font-size:28px; cursor:pointer;" onclick="goBack()">×</span>
+</div>
 
-Object.values(cart).forEach(item => {
-  const lineTotal = item.price * item.qty;
-  total += lineTotal;
+<div id="orderItems"></div>
 
-  const div = document.createElement("div");
-  div.innerHTML = `
-    <strong>${item.title}</strong><br>
-    ${item.qty} x $${item.price} = $${lineTotal.toFixed(2)}<br><br>
-  `;
-  orderItemsDiv.appendChild(div);
+<h2>Total: $<span id="orderTotal">0.00</span></h2>
 
-  summaryText += `${item.title} x ${item.qty} = $${lineTotal.toFixed(2)}\n`;
-});
+<h3>Customer Info</h3>
+<input id="name" placeholder="Full Name"><br><br>
+<input id="email" placeholder="Email"><br><br>
+<textarea id="address" placeholder="Shipping Address"></textarea><br><br>
 
-orderTotalSpan.innerText = total.toFixed(2);
+<button onclick="placeOrder()">Place Order</button>
 
-function placeOrder() {
-  const name = document.getElementById("name").value;
-  const email = document.getElementById("email").value;
-  const address = document.getElementById("address").value;
-
-  if (!name || !email || !address) {
-    alert("Please fill all fields");
-    return;
-  }
-
-  const cart = JSON.parse(localStorage.getItem("cart")) || {};
-
-  if (Object.keys(cart).length === 0) {
-    alert("Your cart is empty");
-    return;
-  }
-
-  let message = `NEW ORDER\n\n`;
-  message += `Name: ${name}\n`;
-  message += `Email: ${email}\n`;
-  message += `Address:\n${address}\n\n`;
-  message += `Items:\n`;
-
-  let total = 0;
-
-  Object.values(cart).forEach(item => {
-    const line = `${item.title} x ${item.qty} = $${(item.price * item.qty).toFixed(2)}\n`;
-    message += line;
-    total += item.price * item.qty;
-  });
-
-  message += `\nTotal: $${total.toFixed(2)}`;
-
-  const subject = encodeURIComponent("New NBA Mystery Pack Order");
-  const body = encodeURIComponent(message);
-
-  // 🔥 YOUR EMAIL HERE
-  const yourEmail = "twhitson240@gmail.com";
-
-  // Open email app
-  window.location.href = `mailto:${yourEmail}?subject=${subject}&body=${body}`;
-
-  // Clear cart
-  localStorage.removeItem("cart");
-
-  // Show success popup on main page
-  localStorage.setItem("orderSuccess", "true");
-
-  // Redirect back to main page
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 500);
-}
-
-
-
-function goBack() {
-  window.location.href = "index.html";
-}
+<script src="order.js"></script>
+</body>
+</html>
