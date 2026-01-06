@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Print Shipping Label</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 40px;
+    }
+    .label {
+      border: 2px solid black;
+      padding: 20px;
+      width: 400px;
+    }
+    h2 {
+      margin-top: 0;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="label" id="label"></div>
+
+<button onclick="window.print()">🖨️ Print Label</button>
+
+<script>
+  const order = JSON.parse(localStorage.getItem("lastOrder"));
+
+  if (!order) {
+    document.getElementById("label").innerHTML = "No order found.";
+  } else {
+    document.getElementById("label").innerHTML = `
+      <h2>SHIP TO:</h2>
+      <strong>${order.name}</strong><br>
+      ${order.address.replace(/\n/g, "<br>")}
+      <hr>
+      <strong>Order Date:</strong><br>
+      ${order.date}
+    `;
+  }
+
+  if (localStorage.getItem("isAdmin") !== "true") {
+  alert("Not authorized");
+  window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>
