@@ -31,24 +31,17 @@ function placeOrder() {
     return;
   }
 
-  const body = `
-New Order!
-
-Name: ${name}
-Email: ${email}
-Address: ${address}
-
-Items:
-${summaryText}
-
-Total: $${total.toFixed(2)}
-`;
-
-  // 🔥 Fallback email method
-  window.location.href = `mailto:${email}?subject=Order Confirmation&body=${encodeURIComponent(body)}`;
-
   // Clear cart
   localStorage.removeItem("cart");
 
-  alert("Order placed! Confirmation email opened.");
+  // Set success flag
+  localStorage.setItem("orderSuccess", "true");
+
+  // Redirect to main page
+  window.location.href = "index.html";
+}
+
+
+function goBack() {
+  window.location.href = "index.html";
 }
