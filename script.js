@@ -1,3 +1,5 @@
+let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
 const products = [
   {
     title: "Glacier 10 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
@@ -22,7 +24,6 @@ const products = [
 
 const productsContainer = document.getElementById("products");
 
-let cart = {};
 let currentProduct = null;
 
 products.forEach(product => {
@@ -123,7 +124,11 @@ function updateCartUI() {
 
   cartCount.innerText = count;
   cartTotal.innerText = total.toFixed(2);
+
+  // 🔥 SAVE CART
+  localStorage.setItem("cart", JSON.stringify(cart));
 }
+
 
 function removeFromCart(index) {
   cart.splice(index, 1);
@@ -135,7 +140,7 @@ function toggleCart() {
 }
 
 function checkout() {
-  alert("Checkout system coming next (Stripe / PayPal).");
+  window.location.href = "order.html";
 }
 
 function changeQty(title, delta) {
