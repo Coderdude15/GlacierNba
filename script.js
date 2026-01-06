@@ -180,3 +180,27 @@ window.addEventListener("load", () => {
     }, 3000);
   }
 });
+
+function adminLogin() {
+  const pass = prompt("Enter admin password:");
+
+  if (pass === "NBAIcy15!") {
+    localStorage.setItem("isAdmin", "true");
+    alert("Admin mode enabled");
+    location.reload();
+  } else {
+    alert("Wrong password");
+  }
+}
+
+function adminLogout() {
+  localStorage.removeItem("isAdmin");
+  location.reload();
+}
+
+window.addEventListener("load", () => {
+  if (localStorage.getItem("isAdmin") === "true") {
+    const btn = document.getElementById("printLabelBtn");
+    if (btn) btn.style.display = "block";
+  }
+});
