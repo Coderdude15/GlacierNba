@@ -8,6 +8,22 @@
 <body>
 
 <header>
+  <div id="cartButton" onclick="toggleCart()">
+  🛒 Cart (<span id="cartCount">0</span>)
+</div>
+
+<div id="cartPanel">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h2>🛒 Your Cart</h2>
+    <span id="closeCart" onclick="toggleCart()">×</span>
+  </div>
+
+  <div id="cartItems"></div>
+  <hr>
+  <p><strong>Total:</strong> $<span id="cartTotal">0.00</span></p>
+  <button onclick="checkout()">Checkout</button>
+</div>
+
   <h1 id="siteTitle">❄️ Ice Mystery NBA Packs</h1>
   <p>Real NBA cards • Shipped to your door</p>
 </header>
@@ -36,7 +52,8 @@
     <img id="modalImage">
     <h2 id="modalTitle"></h2>
     <p id="modalPrice"></p>
-    <button>Order Pack</button>
+    <button onclick="addToCart(currentProduct)">Add To Cart</button>
+    <button onclick="buyNow(currentProduct)">Buy Now</button>
   </div>
 </div>
 
