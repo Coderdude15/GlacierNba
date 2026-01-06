@@ -63,19 +63,25 @@ function placeOrder() {
   // Open email app
   window.location.href = `mailto:${yourEmail}?subject=${subject}&body=${body}`;
 
-  // Clear cart
-  localStorage.removeItem("cart");
+ const orderData = {
+  name,
+  email,
+  address,
+  items: cart,
+  date: new Date().toLocaleString()
+};
 
-  // Show success popup on main page
-  localStorage.setItem("orderSuccess", "true");
+localStorage.setItem("lastOrder", JSON.stringify(orderData));
 
-  // Redirect back to main page
-  setTimeout(() => {
-    window.location.href = "index.html";
-  }, 500);
+// Clear cart
+localStorage.removeItem("cart");
+
+// Set success flag
+localStorage.setItem("orderSuccess", "true");
+
+// Redirect to main page
+window.location.href = "index.html";
 }
-
-
 
 function goBack() {
   window.location.href = "index.html";
