@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ice Mystery NBA Packs</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1 id="siteTitle">❄️ Ice Mystery NBA Packs</h1>
+  <p>Real NBA cards • Shipped to your door</p>
+</header>
+
+<main>
+  <section class="products" id="products"></section>
+
+  <section class="info">
+    <h2>📦 Important Info</h2>
+    <p>
+      These are <strong>REAL physical NBA cards</strong>.
+      Cards are packed and shipped after purchase.
+    </p>
+  </section>
+</main>
+
+<footer>
+  <p>Not affiliated with the NBA</p>
+</footer>
+
+<script src="script.js"></script>
+
+<div id="productModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal()">×</span>
+    <img id="modalImage">
+    <h2 id="modalTitle"></h2>
+    <p id="modalPrice"></p>
+    <button>Order Pack</button>
+  </div>
+</div>
+
+
+</body>
+</html>
