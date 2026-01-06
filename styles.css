@@ -190,3 +190,19 @@ footer {
 #closeCart:hover {
   color: #9be7ff;
 }
+
+#successPopup {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #2ecc71;
+  color: #003300;
+  padding: 15px 25px;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  display: none;
+  z-index: 3000;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+}
