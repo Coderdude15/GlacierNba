@@ -236,3 +236,9 @@ footer {
   transform: translateY(-5px);
   box-shadow: 0 15px 30px rgba(109, 214, 255, 0.4);
 }
+
+.shipping {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #9be7ff;
+}
