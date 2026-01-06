@@ -5,21 +5,25 @@ const products = [
     title: "Glacier 10 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
     price: 9.99,
     cards: 10,
-    image: "images/icy_nba10.png"
+    image: "images/icy_nba10.png",
+    shipping: "3–7 business days"
   },
   {
     title: "Glacier 15 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
     price: 15.99,
     cards: 15,
-    image: "images/icy_nba15.png"
+    image: "images/icy_nba15.png",
+    shipping: "3–7 business days"
   },
   {
     title: "Glacier 25 Card NBA Mystery Pack, Hand Packed & Sealed. (No Guaranteed Rare Cards)",
     price: 19.99,
     cards: 25,
-    image: "images/icy_nba25.png"
+    image: "images/icy_nba25.png",
+    shipping: "3–7 business days"
   }
 ];
+
 
 
 const productsContainer = document.getElementById("products");
@@ -36,6 +40,7 @@ products.forEach(product => {
     <h2>${product.title}</h2>
     <p class="price">$${product.price}</p>
     <p>${product.cards} cards per pack</p>
+    <p class="shipping">🚚 Ships in ${product.shipping}</p>
     <div class="product-buttons">
       <button class="buy-btn">Buy Now</button>
       <button class="add-btn">Add To Cart</button>
@@ -68,6 +73,7 @@ function openProduct(product) {
   document.getElementById("modalImage").src = product.image;
   document.getElementById("modalTitle").innerText = product.title;
   document.getElementById("modalPrice").innerText = `$${product.price}`;
+  document.getElementById("modalShipping").innerText = `🚚 Ships in ${product.shipping}`;
 
   document.getElementById("productModal").style.display = "flex";
 }
