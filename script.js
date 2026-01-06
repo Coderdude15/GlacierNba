@@ -70,6 +70,8 @@ function orderPack(title) {
 }
 
 function openProduct(product) {
+  currentProduct = product;
+
   document.getElementById("modalImage").src = product.image;
   document.getElementById("modalTitle").innerText = product.title;
   document.getElementById("modalPrice").innerText = `$${product.price}`;
@@ -84,10 +86,13 @@ function closeModal() {
 
 function buyNow(product) {
   addToCart(product);
+  closeModal();
   toggleCart();
 }
 
 function addToCart(product) {
+  if (!product) return;
+
   if (cart[product.title]) {
     cart[product.title].qty++;
   } else {
