@@ -29,27 +29,35 @@
 <button onclick="window.print()">🖨️ Print Label</button>
 
 <script>
-  const order = JSON.parse(localStorage.getItem("lastOrder"));
+const order = JSON.parse(localStorage.getItem("lastOrder"));
 
-  if (!order) {
-    document.getElementById("label").innerHTML = "No order found.";
-  } else {
-    document.getElementById("label").innerHTML = `
-      <h2>SHIP TO:</h2>
-      <strong>${order.name}</strong><br>
-      ${order.address.replace(/\n/g, "<br>")}
-      <hr>
-      <strong>Order Date:</strong><br>
-      ${order.date}
-    `;
-  }
+if (!order) {
+  document.getElementById("label").innerHTML = "No order found.";
+} else {
+  let html = `
+    <h2>SHIP TO:</h2>
+    <strong>${order.name}</strong><br>
+    ${order.address.replace(/\n/g, "<br>")}
+    <hr>
+    <strong>Order Date:</strong><br>
+    ${order.date}
+    <hr>
+    <strong>Items to ship:</strong><br>
+  `;
 
-  if (localStorage.getItem("isAdmin") !== "true") {
+  order.items.forEach(item => {
+    html += `• ${item.title} (${item.rarity})<br>`;
+  });
+
+  document.getElementById("label").innerHTML = html;
+}
+
+if (localStorage.getItem("isAdmin") !== "true") {
   alert("Not authorized");
   window.location.href = "index.html";
 }
-
 </script>
+
 
 </body>
 </html>
