@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>USPS Shipping Label</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .label {
+      width: 4in;
+      height: 6in;
+      border: 2px solid black;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+
+    .row {
+      border-bottom: 1px solid black;
+      padding: 6px;
+    }
+
+    .from {
+      font-size: 12px;
+    }
+
+    .to {
+      font-size: 20px;
+      font-weight: bold;
+      white-space: pre-wrap;
+      margin-top: 10px;
+    }
+
+    .barcode {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .tracking {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 5px;
+      letter-spacing: 2px;
+    }
+
+    .items {
+      font-size: 10px;
+      margin-top: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="label">
+  <div class="row from">
+    <b>FROM:</b><br>
+    Ice Mystery Packs<br>
+    (YOUR ADDRESS HERE)
+  </div>
+
+  <div class="row to" id="toAddress"></div>
+
+  <div class="barcode">
+    <svg id="barcode"></svg>
+    <div class="tracking" id="trackingText"></div>
+  </div>
+
+  <div class="items" id="items"></div>
+</div>
+
+<!-- Barcode Library -->
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
+
+<script>
+  const order = JSON.parse(localStorage.getItem("printOrder"));
+
+  if (!order) {
+    document.body.innerHTML = "<h1>No order loaded</h1>";
+    throw new Error("No printOrder found");
+  }
+
+  // Address
+  document.getElementById("toAddress").innerText =
+    order.name + "\n" + order.address;
+
+  // Items
+  document.getElementById("items").innerHTML =
+    "<b>Contents:</b><br>" +
+    order.items.map(i => `• ${i.title} (${i.rarity})`).join("<br>");
+
+  // Fake tracking number (for now)
+  const tracking = "IM" + Math.floor(Math.random() * 1e12).toString().padStart(12, "0");
+
+  document.getElementById("trackingText").innerText = tracking;
+
+  JsBarcode("#barcode", tracking, {
+    format: "CODE128",
+    width: 2,
+    height: 60,
+    displayValue: false
+  });
+
+  window.onload = () => {
+    window.print();
+  };
+</script>
+
+</body>
+</html>
