@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Open Digital Packs</title>
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    .hidden { display: none; }
+
+    #packAnimation img {
+      width: 260px;
+      margin-top: 40px;
+      cursor: pointer;
+      border-radius: 15px;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(0deg); }
+      25% { transform: rotate(2deg); }
+      50% { transform: rotate(-2deg); }
+      75% { transform: rotate(2deg); }
+      100% { transform: rotate(0deg); }
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #6dd6ff; }
+      50% { box-shadow: 0 0 40px #6dd6ff; }
+      100% { box-shadow: 0 0 10px #6dd6ff; }
+    }
+
+    .pack-anim {
+      animation: shake 0.4s infinite, glow 1s infinite;
+    }
+
+    .card {
+      width: 240px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(109,214,255,0.8);
+    }
+
+    .summary img {
+      width: 120px;
+      margin: 10px;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>🎴 Open Digital Packs</h1>
+
+<!-- PACK SELECTION -->
+<div id="packSelect">
+  <button onclick="startPack(10, 7.99)">
+    <img src="images/icy_nba10.png" style="width:140px;"><br>
+    💎 10 Card Pack — $7.99
+  </button>
+</div>
+
+<!-- PACK ANIMATION -->
+<div id="packAnimation" class="hidden">
+  <h2>Click pack to open</h2>
+  <img id="packImage" src="images/icy_nba10.png">
+</div>
+
+<!-- CARD OPENING -->
+<div id="openArea" class="hidden">
+  <h2 id="counter"></h2>
+  <img id="cardImage" class="card">
+  <br><br>
+  <button onclick="nextCard()">➡️ Next Card</button>
+</div>
+
+<!-- SUMMARY -->
+<div id="summaryArea" class="hidden">
+  <h2>🎉 Your Cards</h2>
+  <div class="summary" id="summaryCards"></div>
+
+  <h3>Shipping Info</h3>
+  <input id="name" placeholder="Name"><br><br>
+  <textarea id="address" placeholder="Address"></textarea><br><br>
+
+  <button onclick="finishOrder()">📦 Confirm Order</button>
+</div>
+
+<!-- IMPORTANT: SCRIPT ORDER -->
+<script src="inventory.js"></script>
+<script src="digital.js"></script>
+
+</body>
+</html>
