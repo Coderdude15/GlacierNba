@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Shipping Label</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .label {
+      width: 4in;
+      height: 6in;
+      border: 2px solid black;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .from {
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .to {
+      font-size: 22px;
+      font-weight: bold;
+      margin-top: 40px;
+      white-space: pre-wrap;
+    }
+
+    .items {
+      margin-top: 20px;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="label">
+  <div class="from">
+    <b>FROM:</b><br>
+    Ice Mystery Packs<br>
+    (Your Address Here)
+  </div>
+
+  <div class="to" id="toAddress"></div>
+
+  <div class="items" id="items"></div>
+</div>
+
+<script>
+  const order = JSON.parse(localStorage.getItem("printOrder"));
+
+  document.getElementById("toAddress").innerText =
+    order.name + "\n" + order.address;
+
+  document.getElementById("items").innerHTML =
+    "<b>Contents:</b><br>" +
+    order.items.map(i => `• ${i.title} (${i.rarity})`).join("<br>");
+
+  window.onload = () => {
+    window.print();
+  };
+</script>
+
+</body>
+</html>
