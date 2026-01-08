@@ -1,4 +1,4 @@
-const INVENTORY_VERSION = 8; // bump this to force reset
+const INVENTORY_VERSION = 9; // bump this to force reset
 
 const defaultInventory = [
   { id: 1, name: "Luka Doncic Dominance", image: "Luka_Don_DOM.png", rarity: "common", available: true },
